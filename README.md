@@ -1,6 +1,6 @@
 # huawei-dg8045-hg630-hg633-Config-file-decryption-and-password-decode
 
-Usage dg8045.py decrypt input_file output_file
+Usage : dg8045.py decrypt inputfile outputfile
 
 It cannot encrypt the config file because the signatures are missing 
 
