@@ -14,9 +14,14 @@ made from the password and the salt from the config file
 
 To create it 
 
-`import hashlib
-t = hashlib.pbkdf2_hmac('sha1', b'thepassword', b'salt', 1000, 16).hex()
+`import hashlib`
 
+`
+t = hashlib.pbkdf2_hmac('sha1', b'thepassword', b'salt', 1000, 16).hex()
+`
+
+
+`
 print(t)`
 
 # hg630/hg633 decryption 
