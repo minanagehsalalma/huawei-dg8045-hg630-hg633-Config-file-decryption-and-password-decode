@@ -79,12 +79,9 @@ def repl(blahblah):
    return AES.new(bytes.fromhex('0386DDC2789180D4B9A0CDB52126DEBB'), AES.MODE_CBC, iv=pwd_enc[48:64]).decrypt(pwd_enc[64:]).rstrip(b'\0').decode()
 
 def save_to_file(dest_file, data):
-    wfile = open(dest_file,"wb")
-    wfile.write(data)
-    wfile.close()
-    pattern = re.compile("AQAAAB[0-9A-Za-z+/=]*")
-    with open(dest_file, "r+" ,encoding='utf8',errors = 'ignore') as f:
-     f.write(re.sub("AQAAAB[0-9A-Za-z+/=]*", repl, data.decode("utf-8", "ignore")))
+    with open(dest_file, "w" ,errors = 'ignore') as f:
+     data = re.sub("AQAAAB[0-9A-Za-z+/=]*", repl, data.decode("utf-8", "ignore"))
+     f.write(data[data.index('<?xml '):(data.rindex('</InternetGatewayDeviceConfig>') + 30)])
      
 def get_md5_hash_from_sig(sig):
     sig_int = int(hexlify(sig),16)
