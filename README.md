@@ -1,4 +1,4 @@
-# huawei-dg8045-hg630-hg633-Config-file-decryption-and-password-decode
+# huawei-dg8045-hg630-hg633-Config-file-decryption&encryption-and-password-decode
 
 Usage :`dg8045.py decrypt inputfile outputfile
 `
