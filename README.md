@@ -49,3 +49,11 @@ To manually decrypt passwords
 
 Usage : `sdecode.py encryptedstring
 `
+
+# Need your help extracting signatures for DG8045 WE
+
+ https://github.com/minanagehsalalma/huawei-dg8045-hg630-hg633-Config-file-decryption-and-password-decode/blob/main/DG8045%20WE.bin
+ 
+ the guide which the original script is from
+
+https://web.archive.org/web/20200104011630/https://hg658c.wordpress.com/2017/12/04/decrypting-configuration-files-from-other-huawei-home-gateway-routers/
