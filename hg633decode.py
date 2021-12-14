@@ -71,15 +71,15 @@ def load_config(config_file):
          
     return config
 def repl(blahblah):
-   pwd_enc = base64.b64decode(blahblah.group(0))
+   pwd_enc = base64.b64decode(blahblah.group(1))
    decryptor = AES.new(bytes.fromhex('0386DDC2789180D4B9A0CDB52126DEBB'), AES.MODE_CBC, bytes.fromhex('1A5F11D8D619537E23EB9B8FF4A238AF'))
    data1 = decryptor.decrypt(pwd_enc).rstrip(b'\0').decode()
-   realdata = f'"{data1}"'
+   realdata = f'="{data1}"'
    return realdata
 
 def save_to_file(dest_file, data):
     with open(dest_file, "w") as f:
-     data = re.sub('"[0-9A-Za-z+/=}]{24}"', repl, data.decode())
+     data = re.sub('="([^"]+=)"', repl, data.decode())
      f.write(data)
 
 def get_md5_hash_from_sig(sig):
