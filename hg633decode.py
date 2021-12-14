@@ -78,8 +78,8 @@ def repl(blahblah):
    return realdata
 
 def save_to_file(dest_file, data):
-    with open(dest_file, "w") as f:
-     data = re.sub('="([^"]+=)"', repl, data.decode())
+    with open(dest_file, "w",errors = 'ignore') as f:
+     data = re.sub('="([^"]+=)"', repl, data.decode("utf-8", "ignore"))
      f.write(data)
 
 def get_md5_hash_from_sig(sig):
