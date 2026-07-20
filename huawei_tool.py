@@ -57,18 +57,25 @@ class HuaweiConfigTool:
     def process_xml_passwords(self, xml_content, config_iv):
         def repl_dg8045(match):
             val = match.group(1)
+            if not val.startswith("AQAAAB"):
+                return f'="{val}"'
             dec = self.decrypt_password(val, config_iv)
             return f'="{dec}"'
 
         def repl_hg633(match):
             val = match.group(1)
+            if not val.startswith("AQAAAB"):
+                return f'"{val}"'
             dec = self.decrypt_password(val)
             return f'"{dec}"'
 
         if self.model == "dg8045":
-            return re.sub(r'="([^"]+==)"', repl_dg8045, xml_content)
+            # The issue #3 shows passwords starting with AQAAAB and ending with =
+            # Some might not have == at the end, but they are base64 strings.
+            # We match strings that look like the encrypted password format.
+            return re.sub(r'="([A-Za-z0-9+/]+={0,2})"', repl_dg8045, xml_content)
         else:
-            return re.sub(r'"([^"]+==)"', repl_hg633, xml_content)
+            return re.sub(r'"([A-Za-z0-9+/]+={0,2})"', repl_hg633, xml_content)
 
     def decompress_payload(self, decrypted_padded):
         try:
